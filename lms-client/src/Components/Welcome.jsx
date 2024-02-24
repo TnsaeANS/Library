@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import welcomeImage from "../assets/welcome.jpg";
 import "./Welcome.css";
 import logo from "../assets/logo.png";
@@ -11,13 +12,11 @@ const Welcome = () => {
             <div className="image"></div>
             <div className="text">Unlock the power of knowledge</div>
             <div className="buttons">
-                <a className="sign_up-button" href="http://localhost:5174/sign_up">Sign Up</a>
-                <a className="sign_in-button" href="http://localhost:5174/sign_in">Sign In</a>
+                <Link to="/sign_in"><button className="sign_in-button">Sign In</button></Link>
+                <Link to="/sign_up"><button className="sign_up-button">Sign Up</button></Link>
             </div>
         </div>
     );
 };
 export default Welcome;
-
-
 
