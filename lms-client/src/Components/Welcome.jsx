@@ -9,8 +9,8 @@ const Welcome = () => {
             <div className="image"></div>
             <div className="text">Unlock the power of knowledge</div>
             <div className="buttons">
-                <button className="sign_up-button">Sign Up</button>
-                <button className="sign_in-button">Sign In</button>
+                <a className="sign_up-button" href="http://localhost:5174/sign_up">Sign Up</a>
+                <a className="sign_in-button" href="http://localhost:5174/sign_in">Sign In</a>
             </div>
         </div>
     );
