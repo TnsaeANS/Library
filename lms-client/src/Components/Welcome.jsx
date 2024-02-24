@@ -2,6 +2,8 @@ import React from "react";
 import welcomeImage from "../assets/welcome.jpg";
 import "./Welcome.css";
 import logo from "../assets/logo.png";
+import SignIn from "./sign_in";
+import SignUp from "./sign_up";
 const Welcome = () => {
     return (
         <div className="container">
@@ -9,8 +11,8 @@ const Welcome = () => {
             <div className="image"></div>
             <div className="text">Unlock the power of knowledge</div>
             <div className="buttons">
-                <button className="sign_up-button">Sign Up</button>
-                <button className="sign_in-button">Sign In</button>
+                <a className="sign_up-button" href="http://localhost:5174/sign_up">Sign Up</a>
+                <a className="sign_in-button" href="http://localhost:5174/sign_in">Sign In</a>
             </div>
         </div>
     );
