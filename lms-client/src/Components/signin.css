@@ -27,35 +27,34 @@
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 calc(100% - 80px), 0% calc(100% - 60px));
     border-radius: 50% / 0% 0% 0% 0%;
 }
-.signup-box {
-    width: 360px;
-    height: 570px;
-    margin-top: 30px;
-    margin-bottom: 50px;
-    margin-left: 450px;
+.signin-box {
+    width: 320px;
+    height: 350px;
+    margin-top: 130px;
+    margin-left: 480px;
     background-color:rgba(82, 94, 106, 0.7);
     border-radius: 15px;
   }
   h1 {
     text-align: center;
     padding-top: 15px;
-    width: 320px;
+    width: 280px;
     margin: 0 auto;
   }
 
   form {
-    width: 320px;
+    width: 280px;
     margin: 0 auto;
   }
   form label {
     display: flex;
     margin-top: 10px;
     font-size: 18px;
-    width: 320px;
+    width: 280px;
   }
   input[type="text"], input[type="password"] {
-    width: 320px;
-    height: 35px;
+    width: 280px;
+    height: 30px;
     margin-top: 10px;
     border: none;
     border-radius: 9px;
@@ -64,29 +63,20 @@
     font-size: 15px;
   }
 
-  input[type="email"] {
-    width: 280px;
-    height: 35px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 9px;
-    background-color: rgba(255, 255, 255, 1);
-    color: black;
-    font-size: 15px;
-  }
+
   input[type="button"] {
-    width: 320px;
-    height: 35px;
+    width: 280px;
+    height: 30px;
     margin-top: 20px;
     background-color: rgba(255, 255, 255, 1);
     color: #49c1a2;
     font-size: 18px;
   }
-  button[type="signup"] {
+  button[type="signin"] {
     background-color: rgba(113, 199, 46, 1);
     border: none;
     color: white;
-    padding: 10px 30px 10px 30px;
+    padding: 10px 20px 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -98,7 +88,7 @@
     text-align: center;
     padding-top: 10px;
     font-size: 15px;
-    width: 320px;
+    width: 280px;
     margin: 0 auto;
   }
   .para-1 {
@@ -110,6 +100,5 @@
   .para-1 a {
     color: rgba(113, 199, 46, 1);
   }
-
 
 
