@@ -13,6 +13,34 @@ def create
     render json: book.errors, status: :unprocessable_entity
   end
 end
+
+
+def destroy
+  @book.destroy
+end
+
+
+def show
+  @book = Book.find_by(id: params[:id]) # Assuming you're trying to find a book by ID
+  if @book.present?
+    render json: @book.as_json # Render the book details as JSON without including the image URL
+  else
+    render json: { error: 'Book not found' }, status: :not_found
+  end
+rescue => e
+  render json: { error: 'An error occurred', message: e.message }, status: :internal_server_error
+end
+
+
+
+def update
+  if @book.update(book_params)
+    render json: @book
+  else
+    render json: @book.errors, status: :unprocessable_entity
+  end
+end
+
 private
 
 def book_params
