@@ -9,17 +9,14 @@ function Books() {
     useEffect(() => {
         async function loadBooks(){
             try{
-                const response = await fetch('http://127.0.0.1:3000/books')
-                if (response.ok){
-                    const json = await response.json();
-                    setBooks(json)
-                }else {
-                    throw response;
-                }
-            } catch (e){
-                setError("An error has occurred.")
-                console.log("An error has occured:", e)
-            } finally {
+                
+                const response = await fetch('http://127.0.0.1:3000/books');
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                setBooks(data);
+                setLoading(false);
+            } catch (error) {
+                setError(error.message);
                 setLoading(false);
             }
         }
@@ -28,8 +25,6 @@ function Books() {
     
 
     return (
-       <>
-        <div>
             <table>
                 <thead>
                     <tr>
@@ -56,8 +51,7 @@ function Books() {
                     ))}
                 </tbody>
             </table>
-        </div>
-        </>
+        
       );
       
 
