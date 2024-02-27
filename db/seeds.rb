@@ -14,7 +14,7 @@ Book.destroy_all
 20.times do
   Book.create(
   title: Faker::Lorem.word,
-  isbn: Faker::Number.number(digits:  10).to_s,
+  isbn: Faker::Number.number(digits:  13).to_s,
   author: Faker::Lorem.word,
   genre: Faker::Lorem.word,
   pub_date: Faker::Date.between(from:  5.years.ago, to: Date.today),

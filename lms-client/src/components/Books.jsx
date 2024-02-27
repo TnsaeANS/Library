@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
+import Bookform from "./book_form.jsx";
 
 function Books() {
 
     const [books, setBooks] = useState([])
-    const [, setLoading] = useState(true)
-    const [, setError] = useState(null)
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         async function loadBooks(){
@@ -24,7 +25,10 @@ function Books() {
     }, []);
     
 
+
     return (
+        <div>
+        <Bookform/>
             <table>
                 <thead>
                     <tr>
@@ -47,11 +51,16 @@ function Books() {
                             <td>{book.genre}</td>
                             <td>{book.pub_date}</td>
                             <td>{book.status}</td>
+                            <td><button>Edit</button></td>
+                            <td><button>Delete</button></td>
+
+
+
                         </tr>
                     ))}
                 </tbody>
             </table>
-        
+        </div>
       );
       
 
