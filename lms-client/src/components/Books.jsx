@@ -6,6 +6,8 @@ function Books() {
     const [books, setBooks] = useState([])
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    
+
 
     useEffect(() => {
         async function loadBooks(){
@@ -14,7 +16,10 @@ function Books() {
                 const response = await fetch('http://127.0.0.1:3000/books');
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
-                setBooks(data);
+                const sortedBooks = [...data].sort((a, b) => b.id - a.id);
+                
+                setBooks(sortedBooks);
+
                 setLoading(false);
             } catch (error) {
                 setError(error.message);
@@ -29,7 +34,9 @@ function Books() {
     return (
         <div>
         <Bookform/>
+        <h3>Recently Added Books</h3>
             <table>
+                
                 <thead>
                     <tr>
                         <th>ID</th>
