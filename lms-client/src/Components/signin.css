@@ -1,7 +1,5 @@
 #root {
-    max-width: 1280px;
-    margin: 0 auto;
-    text-align: center;
+
     position: relative;
     z-index: 1;
     overflow: hidden;
@@ -12,9 +10,10 @@
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    z-index: -100;
 }
 
-.image {
+.image2 {
     position: absolute;
     top: 0;
     left: 0;
@@ -23,7 +22,6 @@
     background-image: url("../assets/image.jpg");
     background-size: cover;
     background-position: center;
-    z-index: -1;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 calc(100% - 80px), 0% calc(100% - 60px));
     border-radius: 50% / 0% 0% 0% 0%;
 }
@@ -40,6 +38,7 @@
     padding-top: 15px;
     width: 280px;
     margin: 0 auto;
+    color: white;
   }
 
   form {
@@ -51,6 +50,7 @@
     margin-top: 10px;
     font-size: 18px;
     width: 280px;
+    color: white;
   }
   input[type="text"], input[type="password"] {
     width: 280px;
@@ -83,6 +83,11 @@
     font-size: 18px;
     cursor: pointer;
     margin-top: 20px;
+    
+  }
+  .action{
+    display: flex;
+    justify-content: center;
   }
   p {
     text-align: center;
@@ -94,8 +99,8 @@
   .para-1 {
     text-align: center;
     color: white;
-    font-size: 15px;
-    margin-top: 15px;
+    font-size: 19px;
+    margin-top: 10px;
   }
   .para-1 a {
     color: rgba(113, 199, 46, 1);
