@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from "react"
+import Bookform from "./book_form.jsx";
 
 function Books() {
 
     const [books, setBooks] = useState([])
-    const [, setLoading] = useState(true)
-    const [, setError] = useState(null)
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         async function loadBooks(){
             try{
-                const response = await fetch('http://127.0.0.1:3000/books')
-                if (response.ok){
-                    const json = await response.json();
-                    setBooks(json)
-                }else {
-                    throw response;
-                }
-            } catch (e){
-                setError("An error has occurred.")
-                console.log("An error has occured:", e)
-            } finally {
+                
+                const response = await fetch('http://127.0.0.1:3000/books');
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                setBooks(data);
+                setLoading(false);
+            } catch (error) {
+                setError(error.message);
                 setLoading(false);
             }
         }
@@ -27,9 +25,10 @@ function Books() {
     }, []);
     
 
+
     return (
-       <>
         <div>
+        <Bookform/>
             <table>
                 <thead>
                     <tr>
@@ -52,12 +51,16 @@ function Books() {
                             <td>{book.genre}</td>
                             <td>{book.pub_date}</td>
                             <td>{book.status}</td>
+                            <td><button>Edit</button></td>
+                            <td><button>Delete</button></td>
+
+
+
                         </tr>
                     ))}
                 </tbody>
             </table>
         </div>
-        </>
       );
       
 
