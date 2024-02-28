@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import image from '../assets/image.jpg';
 import './signup.css';
 
@@ -19,7 +20,7 @@ const SignUp = () => {
                     <input type="text" placeholder="" />
                     <label>Password</label>
                     <input type="password" placeholder="" />
-                    <button type="signup">Sign Up</button>
+                    <Link to="/home"><button className="sign_up-button">Sign Up</button></Link>
                     <p className="para-1">
                         Already have an account? <a href="/sign_in">Sign In</a>
                     </p>
