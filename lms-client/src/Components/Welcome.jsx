@@ -11,7 +11,7 @@ const Welcome = () => {
             <div className="logo"><img src={logo} alt="logo" /></div>
             <div className="image1">
             <div className="box">
-                <div className="text">Unlock the power of knowledge</div>
+                <div className="text1">Unlock the power of knowledge</div>
             </div>
             <div className="buttons">
                 <Link to="/sign_in"><button className="sign_in-button">Sign In</button></Link>

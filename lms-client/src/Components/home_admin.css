@@ -5,6 +5,7 @@ body{
     justify-content: space-evenly;
     width: 100%;
     display: flex;
+    margin-top: 10px;
 }
 .image {
     position: absolute;
