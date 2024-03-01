@@ -1,11 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Welcome from './components/Welcome.jsx';
-import SignUp from './components/sign_up.jsx';
-import SignIn from './components/sign_in.jsx';
-import Books from './components/Books.jsx'; 
+import Welcome from './Components/Welcome.jsx';
+import SignUp from './Components/sign_up.jsx';
+import SignIn from './Components/sign_in.jsx';
+import Books from './Components/Books.jsx'; 
 import Home from './Components/home_admin';
 import User from './Components/user';
 
@@ -20,7 +19,7 @@ function App() {
           <Route path="/home_admin" element={<Home />} />
           <Route path="/user" element={<User />} />
 
-          <Route path="/books" element={<Books />} />
+          <Route path="/Books" element={<Books />} />
 
         </Routes>
       </Router>
