@@ -17,7 +17,6 @@ const Home = () => {
                 <div className='list'>
                     <div className='l1'>
                         <Link to="/Books"><button className='new_book-button'>New Book</button></Link>
-                        <button className='delete_book-button'>Delete Book</button>
                         <button className='reserve_book-button'>Reserve Book</button>
                     </div>
                 </div>
@@ -30,7 +29,6 @@ const Home = () => {
                 <div className='list3'>
                     <div className='l3'>
                         <button className='new_book-button'>Book Statistics</button>
-                        <button className='delete_book-button'>Delete Book</button>
                         <button className='reserve_book-button'>Reserve Book</button>
                     </div>
                 </div>
