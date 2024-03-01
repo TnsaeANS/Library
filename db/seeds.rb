@@ -7,3 +7,18 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+
+Book.destroy_all
+
+20.times do
+  Book.create(
+  title: Faker::Lorem.word,
+  isbn: Faker::Number.number(digits:  13).to_s,
+  author: Faker::Lorem.word,
+  genre: Faker::Lorem.word,
+  pub_date: Faker::Date.between(from:  5.years.ago, to: Date.today),
+  status: ['borrowed', 'available'].sample
+)
+
+end
