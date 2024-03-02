@@ -1,20 +1,17 @@
 #root {
-    max-width: 1280px;
-    margin: 0 auto;
-    text-align: center;
+
     position: relative;
     z-index: 1;
-    overflow: hidden;
 }
 
 .container {
     position: relative;
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
+    
 }
 
-.image {
+.image2 {
     position: absolute;
     top: 0;
     left: 0;
@@ -104,12 +101,15 @@
   .para-1 {
     text-align: center;
     color: white;
-    font-size: 15px;
+    font-size: 19px;
     margin-top: 15px;
   }
   .para-1 a {
     color: rgba(113, 199, 46, 1);
   }
-
+  .action{
+    display: flex;
+    justify-content: center;
+  }
 
 

@@ -1,11 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Welcome from './Components/Welcome.jsx';
 import SignUp from './Components/sign_up.jsx';
 import SignIn from './Components/sign_in.jsx';
-import Books from './Components/Books.jsx'; // Make sure this import path is correct
+import Books from './Components/Books.jsx'; 
+import Home from './Components/home_admin';
+import User from './Components/user';
 
 function App() {
     return (
@@ -14,10 +15,16 @@ function App() {
           <Route path="/" element={<Welcome />} />
           <Route path="/sign_up" element={<SignUp />} />
           <Route path="/sign_in" element={<SignIn />} />
-          <Route path="/books" element={<Books />} />
+
+          <Route path="/home_admin" element={<Home />} />
+          <Route path="/user" element={<User />} />
+
+          <Route path="/Books" element={<Books />} />
+
         </Routes>
       </Router>
     );
 }
 
 export default App;
+

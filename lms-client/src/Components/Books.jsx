@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react"
 import Bookform from "./book_form.jsx";
-
+import './Books.css';
+import Navbar from "./navbar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 function Books() {
 
     const [books, setBooks] = useState([])
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    
+    const [visible, setVisible] = useState(false);
 
 
     useEffect(() => {
@@ -33,8 +37,9 @@ function Books() {
 
     return (
         <div>
-        <Bookform/>
-        <h3>Recently Added Books</h3>
+        <Navbar/>
+        {visible? <Bookform/> : <button className="add-book-button" onClick={() => setVisible(true)}>Add Book</button>}
+        <h3 className="recently_added">Recently Added Books</h3>
             <table>
                 
                 <thead>
@@ -58,9 +63,8 @@ function Books() {
                             <td>{book.genre}</td>
                             <td>{book.pub_date}</td>
                             <td>{book.status}</td>
-                            <td><button>Edit</button></td>
-                            <td><button>Delete</button></td>
-
+                            <button className="btn"><FontAwesomeIcon icon={faPenToSquare} style={{ color: "#71c72e" }} /></button>
+                            <button className="btn"><FontAwesomeIcon icon={faTrash} style={{ color: "#71c72e" }} /></button>
 
 
                         </tr>
