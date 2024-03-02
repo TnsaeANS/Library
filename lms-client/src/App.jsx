@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Welcome from './components/Welcome.jsx';
-import SignUp from './components/sign_up.jsx';
-import SignIn from './components/sign_in.jsx';
-import Books from './components/Books.jsx'; // Make sure this import path is correct
+import Welcome from './Components/Welcome.jsx';
+import SignUp from './Components/sign_up.jsx';
+import SignIn from './Components/sign_in.jsx';
+import Books from './Components/Books.jsx'; // Make sure this import path is correct
 
 function App() {
     return (
