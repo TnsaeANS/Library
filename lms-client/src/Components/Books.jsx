@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react"
 import Bookform from "./book_form.jsx";
-import './Books.css';
-import Navbar from "./navbar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
 function Books() {
 
     const [books, setBooks] = useState([])
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [visible, setVisible] = useState(false);
-
+    const [editBook, setEditBook] = useState(null);
 
     useEffect(() => {
         async function loadBooks(){
@@ -32,14 +27,32 @@ function Books() {
         }
         loadBooks();
     }, []);
+    const handleEdit = (book) => {
+        setEditBook(book);
+        console.log("edit")}
+
+
+    const handleDelete = async (bookId) => {
+        try {
+            const response = await fetch(`http://localhost:3000/books/${bookId}`, {
+                method: 'DELETE',
+                });    
+            if (!response.ok) {
+                throw new Error('Failed to delete book');
+            }
+            
+            setBooks(books.filter(book => book.id !== bookId));
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        };
     
 
 
     return (
         <div>
-        <Navbar/>
-        {visible? <Bookform/> : <button className="add-book-button" onClick={() => setVisible(true)}>Add Book</button>}
-        <h3 className="recently_added">Recently Added Books</h3>
+        <Bookform editBook={editBook}/>
+        <h3>Recently Added Books</h3>
             <table>
                 
                 <thead>
@@ -63,10 +76,12 @@ function Books() {
                             <td>{book.genre}</td>
                             <td>{book.pub_date}</td>
                             <td>{book.status}</td>
-                            <button className="btn"><FontAwesomeIcon icon={faPenToSquare} style={{ color: "#71c72e" }} /></button>
-                            <button className="btn"><FontAwesomeIcon icon={faTrash} style={{ color: "#71c72e" }} /></button>
-
-
+                            <td><button 
+                            onClick={() => {
+                                handleEdit(book);
+                                }} >Edit</button></td>
+                            <td><button onClick={() => 
+                                handleDelete(book.id)}>Delete</button></td>
                         </tr>
                     ))}
                 </tbody>

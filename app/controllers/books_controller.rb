@@ -15,7 +15,12 @@ def create
 end
 
 def destroy
-  @book.destroy
+  @book = Book.find_by(id: params[:id])
+  if @book
+     @book.destroy
+  else
+     render json: { error: "Book not found" }, status: :not_found
+  end
 end
 
 
