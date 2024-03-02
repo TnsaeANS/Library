@@ -32,6 +32,23 @@ function Books() {
         console.log("edit")}
 
 
+    const handleDelete = async (bookId) => {
+        try {
+            const response = await fetch(`http://localhost:3000/books/${bookId}`, {
+                method: 'DELETE',
+                });    
+            if (!response.ok) {
+                throw new Error('Failed to delete book');
+            }
+            
+            setBooks(books.filter(book => book.id !== bookId));
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        };
+    
+
+
     return (
         <div>
         <Bookform editBook={editBook}/>
@@ -63,7 +80,8 @@ function Books() {
                             onClick={() => {
                                 handleEdit(book);
                                 }} >Edit</button></td>
-                            <td><button>Delete</button></td>
+                            <td><button onClick={() => 
+                                handleDelete(book.id)}>Delete</button></td>
                         </tr>
                     ))}
                 </tbody>

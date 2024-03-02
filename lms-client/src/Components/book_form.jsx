@@ -9,6 +9,7 @@ function Bookform({ editBook }) {
         pub_date: '',
         status: '',
     });
+    
     useEffect(() => {
         if (editBook) {
             setNewBook(editBook); 
@@ -69,6 +70,8 @@ function Bookform({ editBook }) {
             setErrorMessage("An error occurred while submitting the book.");
         }
     };
+
+   
 
     return (
         <div>
