@@ -16,8 +16,11 @@ const User = () => {
                     <div className='l1'>
                         <button className='request_book-button' >Request Book</button>
                         <button className='reserve_book-button' >Reserve Book</button>
-                        <button className='recently_added-button' >Recently Added</button>
-                    </div>
+                        <div className="action">
+ <Link to="/recently">
+    <button className="recently_added-button">Recently Added</button>
+ </Link>
+</div>                    </div>
                 </div>
             </div>
         </>
