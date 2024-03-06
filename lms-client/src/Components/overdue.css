@@ -4,4 +4,12 @@
 }
 .T{
     margin-top: 50px;
+    width: 60%;
+    margin-left: 20%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }

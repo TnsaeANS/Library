@@ -7,6 +7,7 @@ function Books({hide}) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [editBook, setEditBook] = useState(null);
+    const [visible, setVisible] = useState(false);
 
     useEffect(() => {
         async function loadBooks(){
@@ -53,7 +54,8 @@ function Books({hide}) {
         <div style={{display: hide ? 'none' : 'block'}}>
             <Bookform editBook={editBook}/>
         </div>
-        <h3>Recently Added Books</h3>
+        {visible? <Bookform/> : <button className="add-book-button" onClick={() => setVisible(true)}>Add Book</button>}
+        <h3 className="recently_added">Recently Added Books</h3>
             <table>
                 
                 <thead>

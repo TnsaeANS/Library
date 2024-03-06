@@ -10,7 +10,8 @@ import User from './Components/user';
 import Lend from './Components/lend.jsx';
 import Overdue from './Components/overdue.jsx';
 import Recently from './Components/recently_added';
-
+import Reserve from './Components/reserve.jsx';
+import Request from './Components/request.jsx';
 function App() {
     return (
       <Router>
@@ -24,6 +25,8 @@ function App() {
           <Route path="/Books" element={<Books />} />
           <Route path="/overdue" element={<Overdue />} />
           <Route path="/recently" element={<Recently />} />
+          <Route path="/reserve" element={<Reserve />} />
+          <Route path="/request" element={<Request />} />
         </Routes>
       </Router>
     );
