@@ -10,13 +10,17 @@ def create
   if book.save
     render json: book, status: :created
   else
-    render json: book.errors, status: :unprocessable_entity
+    render json: { message: book.errors.full_messages.join(', ') }, status: :unprocessable_entity
   end
 end
 
-
 def destroy
-  @book.destroy
+  @book = Book.find_by(id: params[:id])
+  if @book
+     @book.destroy
+  else
+     render json: { error: "Book not found" }, status: :not_found
+  end
 end
 
 

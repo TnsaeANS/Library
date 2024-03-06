@@ -9,6 +9,8 @@ import Home from './Components/home_admin';
 import User from './Components/user';
 import Lend from './Components/lend.jsx';
 import Overdue from './Components/overdue.jsx';
+import Recently from './Components/recently_added';
+
 function App() {
     return (
       <Router>
@@ -21,6 +23,7 @@ function App() {
           <Route path="/lend" element={<Lend />} />
           <Route path="/Books" element={<Books />} />
           <Route path="/overdue" element={<Overdue />} />
+          <Route path="/recently" element={<Recently />} />
         </Routes>
       </Router>
     );
