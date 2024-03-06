@@ -37,7 +37,6 @@ function Bookform({ editBook }) {
         const url = "http://localhost:3000/books";
         const payload = JSON.stringify({ book: newBook });
         // console.log(data)
-   
         try {
             const response = await fetch(url, {
                 method: "POST",
