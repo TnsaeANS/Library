@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import Bookform from "./book_form.jsx";
 
-function Books() {
+function Books({hide}) {
 
     const [books, setBooks] = useState([])
     const [loading, setLoading] = useState(true);
@@ -40,7 +40,6 @@ function Books() {
             if (!response.ok) {
                 throw new Error('Failed to delete book');
             }
-            
             setBooks(books.filter(book => book.id !== bookId));
             } catch (error) {
                 console.error("Error:", error);
@@ -51,7 +50,9 @@ function Books() {
 
     return (
         <div>
-        <Bookform editBook={editBook}/>
+        <div style={{display: hide ? 'none' : 'block'}}>
+            <Bookform editBook={editBook}/>
+        </div>
         <h3>Recently Added Books</h3>
             <table>
                 
@@ -76,11 +77,11 @@ function Books() {
                             <td>{book.genre}</td>
                             <td>{book.pub_date}</td>
                             <td>{book.status}</td>
-                            <td><button 
+                            <td><button  style={{display: hide ? 'none' : 'block'}}
                             onClick={() => {
                                 handleEdit(book);
                                 }} >Edit</button></td>
-                            <td><button onClick={() => 
+                            <td><button style={{display: hide ? 'none' : 'block'}} onClick={() => 
                                 handleDelete(book.id)}>Delete</button></td>
                         </tr>
                     ))}
