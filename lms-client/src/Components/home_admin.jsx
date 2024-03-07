@@ -23,7 +23,7 @@ const Home = () => {
                 <div className='list2'>
                     <div className='l2'>
                         <Link to="/lend"><button className='lend_book-button'>Lend Book</button></Link>
-                        <button className='overdue_books-button'>Overdue Books</button>
+                        <Link to="/overdue"><button className='overdue_books-button'>Overdue Books</button></Link>
                     </div>
                 </div>
                 <div className='list3'>
