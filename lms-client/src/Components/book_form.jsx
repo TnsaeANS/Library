@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./book_form.css"
 
-function Bookform() {
+function Bookform({ editBook }) {
     const [newBook, setNewBook] = useState({
         title: '',
         author: '',
@@ -10,36 +10,59 @@ function Bookform() {
         pub_date: '',
         status: '',
     });
+    
+    useEffect(() => {
+        if (editBook) {
+            setNewBook(editBook); 
+        } else {
+            setNewBook({
+                title: '',
+                author: '',
+                isbn: '',
+                genre: '',
+                pub_date: '',
+                status: '',
+            });
+        }
+    }, [editBook])
     const [errorMessage, setErrorMessage] = useState("");
-
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setNewBook(prevBook => ({ ...prevBook, [name]: value }));
     };
-
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
         const url = "http://localhost:3000/books";
         const payload = JSON.stringify({ book: newBook });
         // console.log(data)
+
         try {
             const response = await fetch(url, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: payload,
             });
-
             if (!response.ok) {
                 const errorData = await response.json();
-                if (errorData.message && errorData.message.includes("has to be a different value")) {
+                if (errorData.message == "has to be a different value") {
                   setErrorMessage("Title has to be a different value.");
                 } else {
+                    
                   setErrorMessage(errorData.message || "An error occurred while submitting the book.");
                 }
               } else {
                 const data = await response.json();
                 console.log("New book added:", data);
-                // Optionally, clear the form or update the UI here
+                setNewBook({
+                    title: '',
+                    author: '',
+                    isbn: '',
+                    genre: '',
+                    pub_date: '',
+                    status: '',
+                });
+                window.location.reload(false);
               }
         } catch (err) {
             console.error("Network Error:", err);
@@ -57,7 +80,7 @@ function Bookform() {
                     <input className="title" type="text" name="title" value={newBook.title} onChange={handleInputChange} />
                 </label>
                 <label>
-                    Author:
+                        Author:
                     <input className="title" type="text" name="author" value={newBook.author} onChange={handleInputChange} />
                 </label>
                 <label>
@@ -74,13 +97,16 @@ function Bookform() {
                 </label>
                 <label>
                     Status:
-                    <input className="title" type="text" name="status" value={newBook.status} onChange={handleInputChange} />
-                </label>
+                    <select className="title" name="status" value={newBook.status} onChange={handleInputChange}>
+                        <option value="">Select status</option>
+                        <option value="available">Available</option>
+                        <option value="lent">Lent</option>
+                    </select>
+                 </label>
                 <button className="submit_button" type="submit">Submit</button>
             </form>
             </div>
-            {errorMessage && <div>{errorMessage}</div>}
-        </div>
+            {errorMessage && <div className="error-message">{errorMessage}</div>}        </div>
     );
 }
 
