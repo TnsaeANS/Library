@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import "./book_form.css"
 
-function Bookform({ editBook }) {
+function Bookform() {
     const [newBook, setNewBook] = useState({
         title: '',
         author: '',
@@ -9,28 +10,12 @@ function Bookform({ editBook }) {
         pub_date: '',
         status: '',
     });
-    
-    useEffect(() => {
-        if (editBook) {
-            setNewBook(editBook); 
-        } else {
-            setNewBook({
-                title: '',
-                author: '',
-                isbn: '',
-                genre: '',
-                pub_date: '',
-                status: '',
-            });
-        }
-    }, [editBook])
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setNewBook(prevBook => ({ ...prevBook, [name]: value }));
     };
-    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -46,7 +31,7 @@ function Bookform({ editBook }) {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                if (errorData.message == "has to be a different value") {
+                if (errorData.message && errorData.message.includes("has to be a different value")) {
                   setErrorMessage("Title has to be a different value.");
                 } else {
                   setErrorMessage(errorData.message || "An error occurred while submitting the book.");
@@ -54,15 +39,7 @@ function Bookform({ editBook }) {
               } else {
                 const data = await response.json();
                 console.log("New book added:", data);
-                setNewBook({
-                    title: '',
-                    author: '',
-                    isbn: '',
-                    genre: '',
-                    pub_date: '',
-                    status: '',
-                });
-                window.location.reload(false);
+                // Optionally, clear the form or update the UI here
               }
         } catch (err) {
             console.error("Network Error:", err);
@@ -70,43 +47,38 @@ function Bookform({ editBook }) {
         }
     };
 
-   
-
     return (
         <div>
-            <h3>Add New Book</h3>
-            <form onSubmit= {handleSubmit}>
+            <h3 style={{marginLeft: "40px"}}>Add New Book</h3>
+            <div className="book_form">
+            <form className="form_book" onSubmit= {handleSubmit}>
                 <label>
                     Title:
-                    <input type="text" name="title" value={newBook.title} onChange={handleInputChange} />
+                    <input className="title" type="text" name="title" value={newBook.title} onChange={handleInputChange} />
                 </label>
                 <label>
                     Author:
-                    <input type="text" name="author" value={newBook.author} onChange={handleInputChange} />
+                    <input className="title" type="text" name="author" value={newBook.author} onChange={handleInputChange} />
                 </label>
                 <label>
                     ISBN:
-                    <input type="text" name="isbn" value={newBook.isbn} onChange={handleInputChange} />
+                    <input className="title" type="text" name="isbn" value={newBook.isbn} onChange={handleInputChange} />
                 </label>
                 <label>
                     Genre:
-                    <input type="text" name="genre" value={newBook.genre} onChange={handleInputChange} />
+                    <input className="title" type="text" name="genre" value={newBook.genre} onChange={handleInputChange} />
                 </label>
                 <label>
                     Publication Date:
-                    <input type="date" name="pub_date" value={newBook.pub_date} onChange={handleInputChange} />
+                    <input className="title" type="date" name="pub_date" value={newBook.pub_date} onChange={handleInputChange} />
                 </label>
                 <label>
                     Status:
-                    <select name="status" value={newBook.status} onChange={handleInputChange}>
-                        <option value="">Select status</option>
-                        <option value="available">Available</option>
-                        <option value="lent">Lent</option>
-                    </select>
-                 </label>
-
-                <button type="submit">Submit</button>
+                    <input className="title" type="text" name="status" value={newBook.status} onChange={handleInputChange} />
+                </label>
+                <button className="submit_button" type="submit">Submit</button>
             </form>
+            </div>
             {errorMessage && <div>{errorMessage}</div>}
         </div>
     );

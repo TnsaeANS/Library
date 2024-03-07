@@ -29,7 +29,7 @@ const Home = () => {
                 <div className='list3'>
                     <div className='l3'>
                         <button className='book_statistics-button'>Book Statistics</button>
-                        <button className='requested_book-button'>Requested Book</button>
+                        <Link to="/requested"><button className='requested_book-button'>Requested Book</button></Link>
                     </div>
                 </div>
             </div>

@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react"
 import Bookform from "./book_form.jsx";
-
+import './Books.css';
+import Navbar from "./navbar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 function Books({hide}) {
 
     const [books, setBooks] = useState([])
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [editBook, setEditBook] = useState(null);
     const [visible, setVisible] = useState(false);
+
 
     useEffect(() => {
         async function loadBooks(){
@@ -28,33 +32,13 @@ function Books({hide}) {
         }
         loadBooks();
     }, []);
-    const handleEdit = (book) => {
-        setEditBook(book);
-        console.log("edit")}
-
-
-    const handleDelete = async (bookId) => {
-        try {
-            const response = await fetch(`http://localhost:3000/books/${bookId}`, {
-                method: 'DELETE',
-                });    
-            if (!response.ok) {
-                throw new Error('Failed to delete book');
-            }
-            setBooks(books.filter(book => book.id !== bookId));
-            } catch (error) {
-                console.error("Error:", error);
-            }
-        };
     
 
 
     return (
         <div>
-        <div style={{display: hide ? 'none' : 'block'}}>
-            <Bookform editBook={editBook}/>
-        </div>
-        {visible? <Bookform/> : <button className="add-book-button" onClick={() => setVisible(true)}>Add Book</button>}
+        <Navbar/>
+        {hide ? null : visible? <Bookform/> : <button className="add-book-button" onClick={() => setVisible(true)}>Add Book</button>}
         <h3 className="recently_added">Recently Added Books</h3>
             <table>
                 
@@ -79,12 +63,10 @@ function Books({hide}) {
                             <td>{book.genre}</td>
                             <td>{book.pub_date}</td>
                             <td>{book.status}</td>
-                            <td><button  style={{display: hide ? 'none' : 'block'}}
-                            onClick={() => {
-                                handleEdit(book);
-                                }} >Edit</button></td>
-                            <td><button style={{display: hide ? 'none' : 'block'}} onClick={() => 
-                                handleDelete(book.id)}>Delete</button></td>
+                            <button className="btn"><FontAwesomeIcon icon={faPenToSquare} style={{ color: "#71c72e" }} /></button>
+                            <button className="btn"><FontAwesomeIcon icon={faTrash} style={{ color: "#71c72e" }} /></button>
+
+
                         </tr>
                     ))}
                 </tbody>
