@@ -17,19 +17,19 @@ const Home = () => {
                 <div className='list'>
                     <div className='l1'>
                         <Link to="/Books"><button className='new_book-button'>New Book</button></Link>
-                        <button className='reserve_book-button'>Reserve Book</button>
+                        <button className='reserved_book-button'>Reserved Book</button>
                     </div>
                 </div>
                 <div className='list2'>
                     <div className='l2'>
-                        <button className='lend_book-button'>Lend Book</button>
+                        <Link to="/lend"><button className='lend_book-button'>Lend Book</button></Link>
                         <button className='overdue_books-button'>Overdue Books</button>
                     </div>
                 </div>
                 <div className='list3'>
                     <div className='l3'>
-                        <button className='new_book-button'>Book Statistics</button>
-                        <button className='reserve_book-button'>Reserve Book</button>
+                        <button className='book_statistics-button'>Book Statistics</button>
+                        <button className='requested_book-button'>Requested Book</button>
                     </div>
                 </div>
             </div>

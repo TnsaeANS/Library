@@ -1,6 +1,3 @@
-body{
-   
-}
 .big_list{
     justify-content: space-evenly;
     width: 100%;
@@ -22,7 +19,7 @@ body{
     border-radius: 50% / 0% 0% 0% 0%;
 }
 .new_book-button,
-.reserve_book-button{
+.reserved_book-button{
     padding: 10px 20px;
     font-size: 19px;
     border: none;
@@ -83,9 +80,8 @@ body{
     margin-top: 100px;
     gap: 50px;
 }
-.new_book-button,
-.delete_book-button,
-.reserve_book-button{
+.requested_book-button,
+.book_statistics-button{
     padding: 10px 20px;
     font-size: 19px;
     border: none;
