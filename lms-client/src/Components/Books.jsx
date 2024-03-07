@@ -63,8 +63,8 @@ function Books({hide}) {
                             <td>{book.genre}</td>
                             <td>{book.pub_date}</td>
                             <td>{book.status}</td>
-                            <button className="btn"><FontAwesomeIcon icon={faPenToSquare} style={{ color: "#71c72e" }} /></button>
-                            <button className="btn"><FontAwesomeIcon icon={faTrash} style={{ color: "#71c72e" }} /></button>
+                            <button className="btn" style={{display: hide ? 'none' : 'block'}}><FontAwesomeIcon icon={faPenToSquare} style={{ color: "#71c72e" }} /></button>
+                            <button className="btn" style={{display: hide ? 'none' : 'block'}}><FontAwesomeIcon icon={faTrash} style={{ color: "#71c72e" }} /></button>
 
 
                         </tr>
