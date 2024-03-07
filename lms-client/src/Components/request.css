@@ -11,13 +11,13 @@
     top: 0;
     left: 0;
     width: 850px;
-    height: 490px;
+    height: 570px;
     margin: 80px 270px;
     background-color: rgba(82, 94, 106, 0.7);
     border-radius: 15px;
     color: black;
     z-index: 1;
-    margin-top: 100px;
+    margin-top: 70px;
 }
 .p{
     position: absolute;

@@ -8,10 +8,11 @@ const Request = () => {
     const [author, setAuthor] = useState('');
     const [email, setEmail] = useState('');
     const [isbn, setIsbn] = useState('');
+    const [publisher, setPublisher] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('/books/request', {
+        fetch('http://localhost:3000/requests', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -20,11 +21,11 @@ const Request = () => {
                 title,
                 author,
                 email,
-                isbn
+                isbn,
+                publisher
             })
         })
             .then(res => res.json())
-            .then(data => alert(data.message))
             .catch(err => console.log(err));
     }
 
@@ -38,6 +39,8 @@ const Request = () => {
                     <form onSubmit={handleSubmit}>
                         <label>Title</label>
                         <input type="text." placeholder="" value={title} onChange={(e) => setTitle(e.target.value)} />
+                        <label>Publisher</label>
+                        <input type="text." placeholder="" value={publisher} onChange={(e) => setPublisher(e.target.value)} />
                         <label>Author</label>
                         <input type="text." placeholder="" value={author} onChange={(e) => setAuthor(e.target.value)} />
                         <label>User Email</label>
