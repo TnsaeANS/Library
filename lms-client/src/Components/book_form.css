@@ -35,6 +35,7 @@ label{
     padding-left: 8px;
     color: black;
     font-size: 15px;
+    margin-left: 20px;
 }
 .submit_button{
     background-color: rgba(113, 199, 46, 1);
@@ -49,4 +50,13 @@ label{
     margin-top: 20px;
     border-radius: 9px;
     margin-left: 100px;    
+}
+
+.error-message {
+    background-color: #fce4e4; 
+    border: 1px solid #fcc2c3; 
+    padding: 20px 30px; 
+    color: #cc0033; 
+    align-items: center;
+
 }
