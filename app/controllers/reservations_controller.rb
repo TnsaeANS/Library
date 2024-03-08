@@ -31,6 +31,13 @@ class ReservationsController < ApplicationController
         end
     end
 
+    def unreserved_books
+        reserved_book_ids = Reservation.pluck(:book_id)
+        unreserved_books = Book.where.not(id: reserved_book_ids)
+    
+        render json: unreserved_books
+      end
+
     private
     def reservations_params
         params(:reservations).require(:reservation_date, :book_id, :user_id)

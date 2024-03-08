@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :books
   resources :requests
   resources :reservations
+
+  get '/unreserved_books', to: 'reservations#unreserved_books'
   # Defines the root path route ("/")
   # root "posts#index"
 end
