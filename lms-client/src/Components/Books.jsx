@@ -11,6 +11,7 @@ function Books({hide}) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [visible, setVisible] = useState(false);
+    const [editBook, setEditBook] = useState(null);
 
 
     useEffect(() => {
@@ -32,13 +33,33 @@ function Books({hide}) {
         }
         loadBooks();
     }, []);
+    const handleEdit = (book) => {
+        setEditBook(book);
+        console.log("edit")}
+
+
+    const handleDelete = async (bookId) => {
+        try {
+            const response = await fetch(`http://localhost:3000/books/${bookId}`, {
+                method: 'DELETE',
+                });    
+            if (!response.ok) {
+                throw new Error('Failed to delete book');
+            }
+            
+            setBooks(books.filter(book => book.id !== bookId));
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        };
+    
     
 
 
     return (
         <div>
         <Navbar/>
-        {hide ? null : visible? <Bookform/> : <button className="add-book-button" onClick={() => setVisible(true)}>Add Book</button>}
+        {hide ? null : visible? <Bookform editBook={editBook} /> : <button className="add-book-button" onClick={() => setVisible(true)}>Add Book</button>}
         <h3 className="recently_added">Recently Added Books</h3>
             <table>
                 
@@ -63,8 +84,13 @@ function Books({hide}) {
                             <td>{book.genre}</td>
                             <td>{book.pub_date}</td>
                             <td>{book.status}</td>
-                            <button className="btn" style={{display: hide ? 'none' : 'block'}}><FontAwesomeIcon icon={faPenToSquare} style={{ color: "#71c72e" }} /></button>
-                            <button className="btn" style={{display: hide ? 'none' : 'block'}}><FontAwesomeIcon icon={faTrash} style={{ color: "#71c72e" }} /></button>
+                            <button className="btn" style={{display: hide ? 'none' : 'block'}}><FontAwesomeIcon icon={faPenToSquare} style={{ color: "#71c72e" }} 
+                            onClick={() => {
+                                handleEdit(book);
+                                }}  /></button>
+                            <button className="btn" style={{display: hide ? 'none' : 'block'}}><FontAwesomeIcon icon={faTrash} style={{ color: "#71c72e" }} 
+                            onClick={() => 
+                                handleDelete(book.id)} /></button>
 
 
                         </tr>
