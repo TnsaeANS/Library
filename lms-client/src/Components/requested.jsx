@@ -8,7 +8,6 @@ import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 const Requested = () => {
 
     const [requests, setRequests] = useState([]);
-
     useEffect(() => {
         async function loadBooks() {
             try {
@@ -29,6 +28,8 @@ const Requested = () => {
 
     return (
         <>
+            <Navbar />
+
             <h3 className="recently_added">Requested Books</h3>
             <table>
                 <thead>

@@ -20,7 +20,7 @@ const Reserve = () => {
                 <div className="picture"></div>
                 <div className="reserve-box">
                     <h1 className='reserve'>Reserve Book</h1>
-                    <form onSubmit={handleSubmit}>
+                    {/* <form onSubmit={handleSubmit}>
                         <label>Title</label>
                         <input type="text." placeholder="" value={title} onChange={(e) => setTitle(e.target.value)} />
                         <label>Author</label>
@@ -31,7 +31,7 @@ const Reserve = () => {
                             <button className="reserve_button">Reserve</button>
                         </div>
 
-                    </form>
+                    </form> */}
                 </div>
             </div>
         </>
