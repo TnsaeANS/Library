@@ -1,7 +1,7 @@
 import React from "react";
-import "./user.css";
+import "../styles/user.css";
 import { Link } from "react-router-dom";
-import Navbar from "./navbar";
+import Navbar from "../templates/navbar";
 
 const User = () => {
     return (

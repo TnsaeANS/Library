@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Bookform from "./book_form.jsx";
 import Navbar from "./navbar";
-import "./Books.css";
+import "../styles/Books.css";
 
 const Books = ({ hide }) => {
   const [books, setBooks] = useState([]);

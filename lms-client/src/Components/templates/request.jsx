@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Navbar from './navbar';
 import RequestForm from './request_form'; // Assuming you have a request_form.jsx file
-import './request.css';
+import '../styles/request.css';
 
 const Requests = ({ hide }) => {
   const [requests, setRequests] = useState([]);

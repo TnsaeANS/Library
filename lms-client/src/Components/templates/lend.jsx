@@ -1,8 +1,8 @@
 import  { useEffect } from 'react';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from './navbar';
-import './lend.css';
+import Navbar from '../templates/navbar';
+import '../styles/lend.css';
 
 const Lend = () => {
     const [books, setBooks] = useState([]);

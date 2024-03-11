@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import image from '../assets/image.jpg';
-import './signup.css';
+import image from '../../assets/image.jpg';
+import '../styles/signup.css';
 
 
 const SignUp = () => {
