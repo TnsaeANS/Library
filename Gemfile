@@ -45,6 +45,7 @@ group :development, :test do
   gem "faker"
   gem "rspec"
   gem 'shoulda-matchers'
+  gem 'jwt'
 end
 
 

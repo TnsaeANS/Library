@@ -8,7 +8,6 @@ import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 const Requested = () => {
 
     const [requests, setRequests] = useState([]);
-
     useEffect(() => {
         async function loadBooks() {
             try {
@@ -29,7 +28,9 @@ const Requested = () => {
 
     return (
         <>
-            <h3 className="recently_added">Recently Added Books</h3>
+            <Navbar />
+
+            <h3 className="recently_added">Requested Books</h3>
             <table>
                 <thead>
                     <tr>
@@ -46,11 +47,20 @@ const Requested = () => {
                         <tr key={request.id}>
                             <td>{request.id}</td>
                             <td>{request.title}</td>
-                            <td>{request.publisher}</td>
                             <td>{request.author}</td>
                             <td>{request.isbn}</td>
-                            <td>{request.user.email}</td>
-                            <button className="btn"><FontAwesomeIcon icon={faTrash} style={{ color: "#71c72e" }} /></button>
+                            <td>{request.publisher}</td>
+                            <td>{request.user && request.user.email}</td>
+                            <button className="btn" onClick={() => {
+                                    fetch(`http://localhost:3000/requests/${request.id}`, {
+                                        method: 'DELETE',
+                                    })
+                                        .then(res => res.json())
+                                        .then(data => {
+                                            setRequests(requests.filter(book => book.id !== request.id));
+                                        })
+                                        .catch(console.log)
+                                }}><FontAwesomeIcon icon={faTrash} style={{ color: "#71c72e" }} /></button>
 
                         </tr>
                     ))}
