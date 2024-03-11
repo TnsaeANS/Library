@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./navbar";
-import "./overdue.css";
+import Navbar from "../templates/navbar";
+import "../styles/overdue.css";
 
 const Overdue = () => {
   const [overdueBooks, setOverdueBooks] = useState([]);

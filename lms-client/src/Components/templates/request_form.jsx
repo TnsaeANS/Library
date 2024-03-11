@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from 'react';
-import './request.css'
+import '../styles/request.css'
 
 const RequestForm = () => {
     const [title, setTitle] = useState('');

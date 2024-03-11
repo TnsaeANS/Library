@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import welcomeImage from "../assets/welcome.jpg";
-import "./Welcome.css";
-import logo from "../assets/logo.png";
+import welcomeImage from "../../assets/welcome.jpg";
+import "../styles/Welcome.css";
+import logo from "../../assets/logo.png";
 import SignIn from "./sign_in";
 import SignUp from "./sign_up";
 const Welcome = () => {

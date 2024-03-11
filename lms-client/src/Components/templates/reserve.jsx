@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from './navbar';
-import './reserve.css';
+import Navbar from '../templates/navbar';
+import '../styles/reserve.css';
 
 const Reserve = () => {
     const [title, setTitle] = useState('');
