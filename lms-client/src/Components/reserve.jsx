@@ -7,6 +7,7 @@ const Reserve = () => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [email, setEmail] = useState('');
+    const [books, setBooks] = useState([])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,27 +15,43 @@ const Reserve = () => {
     }
 
     return (
-        <>
-            <Navbar />
-            <div className='screen'>
-                <div className="picture"></div>
-                <div className="reserve-box">
-                    <h1 className='reserve'>Reserve Book</h1>
-                    {/* <form onSubmit={handleSubmit}>
-                        <label>Title</label>
-                        <input type="text." placeholder="" value={title} onChange={(e) => setTitle(e.target.value)} />
-                        <label>Author</label>
-                        <input type="text." placeholder="" value={author} onChange={(e) => setAuthor(e.target.value)} />
-                        <label>User Email</label>
-                        <input type="mail" placeholder="" value={email} onChange={(e) => setEmail(e.target.value)} />
-                        <div className="action">
-                            <button className="reserve_button">Reserve</button>
-                        </div>
+        <div>
+        <Navbar/>
+        <h3 className="reserve">Reserve</h3>
+            <table>
+                
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>ISBN</th>
+                        <th>Genre</th>
+                        <th>Publication Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {books.map((book) => (
+                        <tr key={book.id}>
+                            <td>{book.id}</td>
+                            <td>{book.title}</td>
+                            <td>{book.author}</td>
+                            <td>{book.isbn}</td>
+                            <td>{book.genre}</td>
+                            <td>{book.pub_date}</td>
+                            <td>{book.status}</td>
+                            <button className="btn"><FontAwesomeIcon icon={faPenToSquare} style={{ color: "#71c72e" }} 
+                            onClick={() => {
+                                handleEdit(book);
+                                }}  /></button>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+      );
+}
 
-                    </form> */}
-                </div>
-            </div>
-        </>
-    );
-};
 export default Reserve
+
