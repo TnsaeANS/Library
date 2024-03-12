@@ -39,6 +39,9 @@ const Books = ({ hide }) => {
     try {
       const response = await fetch(`http://localhost:3000/books/${bookId}`, {
         method: "DELETE",
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        }
       });
       if (!response.ok) {
         throw new Error("Failed to delete book");
@@ -83,24 +86,24 @@ const Books = ({ hide }) => {
               <td>{book.genre}</td>
               <td>{book.pub_date}</td>
               <td>{book.status}</td>
-              <button
+              <button onClick={() => handleEdit(book)}
                 className="btn"
                 style={{ display: hide ? "none" : "block" }}
               >
                 <FontAwesomeIcon
                   icon={faPenToSquare}
                   style={{ color: "#71c72e" }}
-                  onClick={() => handleEdit(book)}
+                  
                 />
               </button>
-              <button
+              <button onClick={() => handleDelete(book.id)}
                 className="btn"
                 style={{ display: hide ? "none" : "block" }}
               >
                 <FontAwesomeIcon
                   icon={faTrash}
                   style={{ color: "#71c72e" }}
-                  onClick={() => handleDelete(book.id)}
+                  
                 />
               </button>
             </tr>
