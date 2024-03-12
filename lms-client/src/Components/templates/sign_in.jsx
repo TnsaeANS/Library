@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import image from '../../assets/image.jpg';
 // import axiosConfig from '../../axiosConfig';
 import '../styles/signin.css';
+
 
 const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
   const [loginerror, setLoginError] = useState('');
-
+  const navigate = useNavigate();
   const handleSignIn = async (e) => {
     e.preventDefault();
 
@@ -36,9 +37,16 @@ const SignIn = () => {
       console.log(`User` + user)
 
       localStorage.setItem('token', token);
-      localStorage.setItem('user', user);
+      localStorage.setItem('user', user); 
 
       setLoggedIn(true);
+
+      if (user.user_type === 'admin') {
+        navigate('/home_admin');
+      } else {
+        navigate('/user');
+      }
+
     } catch (error) {
       console.log("Entered error handler")
       console.error(error);
