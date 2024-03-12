@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Bookform from "./book_form.jsx";
 import Navbar from "./navbar";
-import "./Books.css";
+import "../styles/Books.css";
+import { useLocation } from "react-router-dom";
 
 const Books = ({ hide }) => {
   const [books, setBooks] = useState([]);
@@ -11,6 +12,9 @@ const Books = ({ hide }) => {
   const [error, setError] = useState(null);
   const [visible, setVisible] = useState(false);
   const [editBook, setEditBook] = useState(null);
+
+  const location = useLocation();
+  const searchQuery = location.state?.searchQuery || "";
 
   useEffect(() => {
     async function loadBooks() {
@@ -74,37 +78,39 @@ const Books = ({ hide }) => {
           </tr>
         </thead>
         <tbody>
-          {books.map((book) => (
-            <tr key={book.id}>
-              <td>{book.id}</td>
-              <td>{book.title}</td>
-              <td>{book.author}</td>
-              <td>{book.isbn}</td>
-              <td>{book.genre}</td>
-              <td>{book.pub_date}</td>
-              <td>{book.status}</td>
-              <button
-                className="btn"
-                style={{ display: hide ? "none" : "block" }}
-              >
-                <FontAwesomeIcon
-                  icon={faPenToSquare}
-                  style={{ color: "#71c72e" }}
-                  onClick={() => handleEdit(book)}
-                />
-              </button>
-              <button
-                className="btn"
-                style={{ display: hide ? "none" : "block" }}
-              >
-                <FontAwesomeIcon
-                  icon={faTrash}
-                  style={{ color: "#71c72e" }}
-                  onClick={() => handleDelete(book.id)}
-                />
-              </button>
-            </tr>
-          ))}
+          {books
+            .filter((book) => book.title.includes(searchQuery.toLowerCase()))
+            .map((book) => (
+              <tr key={book.id}>
+                <td>{book.id}</td>
+                <td>{book.title}</td>
+                <td>{book.author}</td>
+                <td>{book.isbn}</td>
+                <td>{book.genre}</td>
+                <td>{book.pub_date}</td>
+                <td>{book.status}</td>
+                <button
+                  className="btn"
+                  style={{ display: hide ? "none" : "block" }}
+                >
+                  <FontAwesomeIcon
+                    icon={faPenToSquare}
+                    style={{ color: "#71c72e" }}
+                    onClick={() => handleEdit(book)}
+                  />
+                </button>
+                <button
+                  className="btn"
+                  style={{ display: hide ? "none" : "block" }}
+                >
+                  <FontAwesomeIcon
+                    icon={faTrash}
+                    style={{ color: "#71c72e" }}
+                    onClick={() => handleDelete(book.id)}
+                  />
+                </button>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
