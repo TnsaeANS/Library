@@ -12,7 +12,11 @@ const Requested = () => {
         async function loadBooks() {
             try {
 
-                const response = await fetch('http://127.0.0.1:3000/requests');
+                const response = await fetch('http://127.0.0.1:3000/requests' , {
+                    headers: {
+                      'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                    }
+                  });
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
                 const sortedBooks = [...data].sort((a, b) => b.id - a.id);
@@ -54,6 +58,10 @@ const Requested = () => {
                             <button className="btn" onClick={() => {
                                     fetch(`http://localhost:3000/requests/${request.id}`, {
                                         method: 'DELETE',
+                                            headers: {
+                                              'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                                            
+                                          }
                                     })
                                         .then(res => res.json())
                                         .then(data => {

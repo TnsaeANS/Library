@@ -9,16 +9,18 @@
 #   end
 
 
-Book.destroy_all
+# Book.destroy_all
 
-20.times do
-  Book.create(
-  title: Faker::Lorem.word,
-  isbn: Faker::Number.number(digits:  13).to_s,
-  author: Faker::Lorem.word,
-  genre: Faker::Lorem.word,
-  pub_date: Faker::Date.between(from:  5.years.ago, to: Date.today),
-  status: ['borrowed', 'available'].sample
-)
+# 20.times do
+#   Book.create(
+#   title: Faker::Lorem.word,
+#   isbn: Faker::Number.number(digits:  13).to_s,
+#   author: Faker::Lorem.word,
+#   genre: Faker::Lorem.word,
+#   pub_date: Faker::Date.between(from:  5.years.ago, to: Date.today),
+#   status: ['borrowed', 'available'].sample
+# )
+# end
 
+1.times do User.create(username: "name", password: "yolo", email: "email", user_type: "admin")
 end
