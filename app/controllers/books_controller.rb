@@ -39,7 +39,7 @@ end
 
 def update
   if @book.update(book_params)
-    render json: @book
+    render json: @book, status: :ok
   else
     render json: @book.errors, status: :unprocessable_entity
   end
@@ -51,4 +51,7 @@ def book_params
   params.require(:book).permit(:title, :author, :isbn,  :genre, :pub_date, :status)
 end
 
+def set_book
+  @book = Book.find_by(id: params[:id])
+end
 end
