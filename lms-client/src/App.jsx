@@ -1,18 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Welcome from './Components/Welcome.jsx';
-import SignUp from './Components/sign_up.jsx';
-import SignIn from './Components/sign_in.jsx';
-import Books from './Components/Books.jsx'; 
-import Home from './Components/home_admin';
-import User from './Components/user';
-import Lend from './Components/lend.jsx';
-import Overdue from './Components/overdue.jsx';
-import Recently from './Components/recently_added';
-import Reserve from './Components/reserve.jsx';
-import Request from './Components/request.jsx';
-import Requested from './Components/requested.jsx';
+import Welcome from './Components/templates/Welcome.jsx';
+import SignUp from './Components/templates/sign_up.jsx';
+import SignIn from './Components/templates/sign_in.jsx';
+import Books from './Components/templates/Books.jsx'; 
+import Home from './Components/templates/home_admin';
+import User from './Components/templates/user';
+import Lend from './Components/templates/lend.jsx';
+import Overdue from './Components/templates/overdue.jsx';
+import Recently from './Components/templates/recently_added';
+import Reserve from './Components/templates/reserve.jsx';
+import Request from './Components/templates/request.jsx';
+import Requested from './Components/templates/requested.jsx';
 function App() {
     return (
       <Router>

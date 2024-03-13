@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./navbar";
-import "./overdue.css";
+import Navbar from "../templates/navbar";
+import "../styles/overdue.css";
 
 const Overdue = () => {
   const [overdueBooks, setOverdueBooks] = useState([]);
 
   useEffect(() => {
     async function loadOverdueBooks() {
-      const response = await fetch("http://127.0.0.1:3000/overdue");
+      const response = await fetch("http://127.0.0.1:3000/overdue" , {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        }
+      });
       if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
       setOverdueBooks(data);

@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from 'react';
-import './request.css'
+import '../styles/request.css'
 
 const RequestForm = () => {
     const [title, setTitle] = useState('');
@@ -14,6 +14,7 @@ const RequestForm = () => {
         fetch('http://localhost:3000/requests', {
             method: 'POST',
             headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
