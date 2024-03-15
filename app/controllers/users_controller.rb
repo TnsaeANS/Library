@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   # REGISTER
   def create
     @user = User.new(user_params)
-
     if @user.save
       token = encode_token({user_id: @user.id})
       render json: {user: @user, token: token}
@@ -34,7 +33,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:username, :password, :email, :user_type)
+    params.require(:user).permit(:username, :password, :email, :user_type)
   end
 
 end

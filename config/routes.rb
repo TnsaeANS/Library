@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "/auto_login", to: "users#auto_login"
 
   get '/unreserved_books', to: 'reservations#unreserved_books'
+  resources :statistics, only: :index
   # Defines the root path route ("/")
   # root "posts#index"
 end
