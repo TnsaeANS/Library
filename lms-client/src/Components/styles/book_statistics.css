@@ -1,0 +1,56 @@
+.bs{
+    text-align: center;
+    color: rgba(82, 94, 106, 0.7);
+}
+.book-statistics{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90vh;
+    background-image: url("../../assets/hello.jpg");
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 calc(100% - 80px), 0% calc(100% - 60px));
+    border-radius: 50% / 0% 0% 0% 0%;
+}
+.column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    gap: 70px;
+}
+.s1{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap:60px;
+}
+
+.s2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.s3{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap:60px;
+}
+.c{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 200px;
+    height: 80px;
+    color:rgba(65, 70, 74, 0.7);
+    background-color: rgba(216, 255, 191, 1);
+    font-size: 20px;
+    font-weight: bolder;
+}

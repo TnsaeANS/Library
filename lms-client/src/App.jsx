@@ -13,6 +13,7 @@ import Recently from './Components/templates/recently_added';
 import Reserve from './Components/templates/reserve.jsx';
 import Request from './Components/templates/request.jsx';
 import Requested from './Components/templates/requested.jsx';
+import BookStatistics from './Components/templates/book_statistics';
 function App() {
     return (
       <Router>
@@ -29,6 +30,8 @@ function App() {
           <Route path="/reserve" element={<Reserve />} />
           <Route path="/request" element={<Request />} />
           <Route path='/requested' element={<Requested />} />
+          <Route path='/book_statistics' element={<BookStatistics />} />
+
         </Routes>
       </Router>
     );
