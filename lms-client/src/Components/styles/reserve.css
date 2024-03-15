@@ -2,8 +2,7 @@
     position: relative;
     z-index: 1;
 }
-
-.containerr {
+.screen{
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -11,8 +10,7 @@
     left: 0;
     z-index: -1;
 }
-
-.lend-box {
+.reserve-box{
     position: absolute;
     top: 0;
     left: 0;
@@ -25,37 +23,35 @@
     z-index: 1;
     margin-top: 100px;
 }
-
-.pic {
+.picture{
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url("../assets/image.jpg");
+    background-image: url("../../assets/image.jpg");
     background-size: cover;
     background-position: center;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 calc(100% - 80px), 0% calc(100% - 60px));
     border-radius: 50% / 0% 0% 0% 0%;
 }
-
-input[type="textt"], input[type="Email"] {
+/* input[type="text."], input[type="mail"] {
     width: 690px;
     height: 35px;
     margin-top: 10px;
     margin-left: 40px;
     border-radius: 5px;
     border: none;
-    padding-left: 10px;
-}
+    padding-left: 10px; 
+}*/
 
 form {
-    margin-top: 16px;
+    margin-top: 26px;
     margin-left: 40px;
 }
 
 
-.lend_button {
+.reserve_button {
     background-color: rgba(113, 199, 46, 0.6);
     border: none;
     color: white;

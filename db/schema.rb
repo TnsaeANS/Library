@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_08_091149) do
+
+ActiveRecord::Schema[7.1].define(version: 2024_03_11_120729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,7 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_08_091149) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.date "reservation_date", null: false
+    t.date "reservation_date"
     t.bigint "user_id", null: false
     t.bigint "book_id", null: false
     t.datetime "created_at", null: false
@@ -67,6 +68,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_08_091149) do
     t.string "user_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
   end
 
   add_foreign_key "lends", "books"

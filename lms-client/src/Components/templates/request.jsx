@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Navbar from './navbar';
 import RequestForm from './request_form'; // Assuming you have a request_form.jsx file
-import './request.css';
+import '../styles/request.css';
 
 const Requests = ({ hide }) => {
   const [requests, setRequests] = useState([]);
@@ -15,7 +15,11 @@ const Requests = ({ hide }) => {
   useEffect(() => {
     async function loadRequests() {
       try {
-        const response = await fetch("http://localhost:3000/requests");
+        const response = await fetch("http://localhost:3000/requests", {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem("token")}`,
+          }
+        });
         if (!response.ok) throw new Error("Network response was not ok");
         const data = await response.json();
         const sortedRequests = [...data].sort((a, b) => b.id - a.id);
@@ -39,7 +43,11 @@ const Requests = ({ hide }) => {
     try {
       const response = await fetch(`http://localhost:3000/requests/${requestId}`, {
         method: "DELETE",
-      });
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem("token")}`,
+          }
+        }
+      );
       if (!response.ok) {
         throw new Error("Failed to delete request");
       }
@@ -81,24 +89,24 @@ const Requests = ({ hide }) => {
               <td>{request.author}</td>
               <td>{request.user.email}</td>
               <td>{request.isbn}</td>
-              <button
+              <button onClick={() => handleEdit(request)}
                 className="btn"
                 style={{ display: hide ? "none" : "block" }}
               >
                 <FontAwesomeIcon
                   icon={faPenToSquare}
                   style={{ color: "#71c72e" }}
-                  onClick={() => handleEdit(request)}
+                  
                 />
               </button>
-              <button
+              <button onClick={() => handleDelete(request.id)}
                 className="btn"
                 style={{ display: hide ? "none" : "block" }}
               >
                 <FontAwesomeIcon
                   icon={faTrash}
                   style={{ color: "#71c72e" }}
-                  onClick={() => handleDelete(request.id)}
+                  
                 />
               </button>
             </tr>
