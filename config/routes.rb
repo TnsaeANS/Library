@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   resources :books
   resources :requests
   resources :reservations
+  resources :lends
 
+
+  get '/lendable_books', to: 'lends#lendable_books'
   get '/unreserved_books', to: 'reservations#unreserved_books'
   # Defines the root path route ("/")
   # root "posts#index"
