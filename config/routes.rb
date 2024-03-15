@@ -9,10 +9,15 @@ Rails.application.routes.draw do
   resources :requests
   resources :reservations
   resources :lends
+  resources :users
+
+  post "/login", to: "users#login"
+  get "/auto_login", to: "users#auto_login"
 
 
   get '/lendable_books', to: 'lends#lendable_books'
   get '/unreserved_books', to: 'reservations#unreserved_books'
+  resources :statistics, only: :index
   # Defines the root path route ("/")
   # root "posts#index"
 end

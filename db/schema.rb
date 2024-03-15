@@ -10,28 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_07_150713) do
+
+ActiveRecord::Schema[7.1].define(version: 2024_03_11_120729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
-    t.string "title", null: false
-    t.string "author", null: false
-    t.string "isbn", null: false
-    t.string "genre", null: false
-    t.date "pub_date", null: false
-    t.string "status", null: false
+    t.string "title"
+    t.string "author"
+    t.string "isbn"
+    t.string "genre"
+    t.date "pub_date"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "due_date"
   end
 
   create_table "lends", force: :cascade do |t|
-    t.date "lent_date", null: false
-    t.date "return_date", null: false
+    t.date "lent_date"
+    t.date "return_date"
     t.bigint "user_id", null: false
     t.bigint "book_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "returned"
     t.index ["book_id"], name: "index_lends_on_book_id"
     t.index ["user_id"], name: "index_lends_on_user_id"
   end
@@ -49,7 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_150713) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.date "reservation_date", null: false
+    t.date "reservation_date"
     t.bigint "user_id", null: false
     t.bigint "book_id", null: false
     t.datetime "created_at", null: false
@@ -59,12 +62,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_150713) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username", null: false
-    t.string "password", null: false
-    t.string "email", null: false
-    t.string "user_type", null: false
+    t.string "username"
+    t.string "password"
+    t.string "email"
+    t.string "user_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
   end
 
   add_foreign_key "lends", "books"

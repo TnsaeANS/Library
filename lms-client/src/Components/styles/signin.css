@@ -24,7 +24,7 @@
 }
 .signin-box {
     width: 390px;
-    height: 390px;
+    height: 420px;
     margin-top: 130px;
     margin-left: 480px;
     background-color:rgba(82, 94, 106, 0.7);
@@ -98,6 +98,7 @@
     color: white;
     font-size: 19px;
     margin-top: 10px;
+   
   }
   .para-1 a {
     color: rgba(113, 199, 46, 1);

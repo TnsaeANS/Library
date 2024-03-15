@@ -4,7 +4,6 @@ import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Bookform from "./book_form.jsx";
 import Navbar from "./navbar";
 import "../styles/Books.css";
-import { useLocation } from "react-router-dom";
 
 const Books = ({ hide }) => {
   const [books, setBooks] = useState([]);
@@ -12,9 +11,6 @@ const Books = ({ hide }) => {
   const [error, setError] = useState(null);
   const [visible, setVisible] = useState(false);
   const [editBook, setEditBook] = useState(null);
-
-  const location = useLocation();
-  const searchQuery = location.state?.searchQuery || "";
 
   useEffect(() => {
     async function loadBooks() {
@@ -43,6 +39,9 @@ const Books = ({ hide }) => {
     try {
       const response = await fetch(`http://localhost:3000/books/${bookId}`, {
         method: "DELETE",
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        }
       });
       if (!response.ok) {
         throw new Error("Failed to delete book");
@@ -78,39 +77,37 @@ const Books = ({ hide }) => {
           </tr>
         </thead>
         <tbody>
-          {books
-            .filter((book) => book.title.includes(searchQuery.toLowerCase()))
-            .map((book) => (
-              <tr key={book.id}>
-                <td>{book.id}</td>
-                <td>{book.title}</td>
-                <td>{book.author}</td>
-                <td>{book.isbn}</td>
-                <td>{book.genre}</td>
-                <td>{book.pub_date}</td>
-                <td>{book.status}</td>
-                <button
-                  className="btn"
-                  style={{ display: hide ? "none" : "block" }}
-                >
-                  <FontAwesomeIcon
-                    icon={faPenToSquare}
-                    style={{ color: "#71c72e" }}
-                    onClick={() => handleEdit(book)}
-                  />
-                </button>
-                <button
-                  className="btn"
-                  style={{ display: hide ? "none" : "block" }}
-                >
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    style={{ color: "#71c72e" }}
-                    onClick={() => handleDelete(book.id)}
-                  />
-                </button>
-              </tr>
-            ))}
+          {books.map((book) => (
+            <tr key={book.id}>
+              <td>{book.id}</td>
+              <td>{book.title}</td>
+              <td>{book.author}</td>
+              <td>{book.isbn}</td>
+              <td>{book.genre}</td>
+              <td>{book.pub_date}</td>
+              <td>{book.status}</td>
+              <button onClick={() => handleEdit(book)}
+                className="btn"
+                style={{ display: hide ? "none" : "block" }}
+              >
+                <FontAwesomeIcon
+                  icon={faPenToSquare}
+                  style={{ color: "#71c72e" }}
+                  
+                />
+              </button>
+              <button onClick={() => handleDelete(book.id)}
+                className="btn"
+                style={{ display: hide ? "none" : "block" }}
+              >
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  style={{ color: "#71c72e" }}
+                  
+                />
+              </button>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

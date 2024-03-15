@@ -32,6 +32,7 @@ const Lend = () => {
       .then((res) => res.json())
       .then((data) => console.log(data));
 
+
     setBooks(books.filter((b) => b.id !== book));
   };
 
