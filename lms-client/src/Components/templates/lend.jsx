@@ -1,68 +1,76 @@
-import  { useEffect } from 'react';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from '../templates/navbar';
-import '../styles/lend.css';
+import { useEffect } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "../templates/navbar";
+import "../styles/lend.css";
 
 const Lend = () => {
-    const [books, setBooks] = useState([]);
-    const [email, setEmail] = useState("");
+  const [books, setBooks] = useState([]);
+  const [email, setEmail] = useState("");
 
-    useEffect(() => {
-        fetch("/books")
-            .then(res => res.json())
-            .then(data => setBooks(data));
-    }, []);
+  useEffect(() => {
+    fetch("http://localhost:3000/lendable_books")
+      .then((res) => res.json())
+      .then((data) => setBooks(data));
+  }, []);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const bookId = e.target.bookId.value;
-        const email = e.target.email.value;
-        fetch("/books/lend", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${localStorage.getItem("token")}`
-            },
-            body: JSON.stringify({
-                bookId,
-                email
-            })
-        })
-            .then(res => res.json())
-            .then(data => alert(data.message));
-    }
+  const handleLend = (book) => {
+    fetch("http://localhost:3000/lends", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        lend: {
+          lent_date: new Date(),
+          return_date: new Date() + 7 * 24 * 60 * 60 * 1000,
+          user_id: 1,
+          book_id: book,
+        },
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
 
-    return (
-        <>
-            <Navbar />
-            
-            <div className="containerr">
-                
-                    <div className="pic"></div>
-                    <div className="lend-box">
-                        <h1>Lend Book</h1>
 
-                        <form onSubmit={handleSubmit}>
-                            <label>Book ID</label>
-                            <input type="textt" placeholder="" />
-                            <label>Book Name</label>
-                            <input type="textt" placeholder="" />
-                            <label>Author</label>
-                            <input type="textt" placeholder="" />
-                            <label>User Email</label>
-                            <input type="Email" placeholder="" name="email" />
-                            <div className="action">
-                                <button className="lend_button">lend</button>
-                            </div>
+    setBooks(books.filter((b) => b.id !== book));
+  };
 
-                        </form>
-                    </div>
-
-            </div>
-
-        </>
-    )
-}
-export default Lend
-
+  return (
+    <div>
+      <Navbar />
+      <h3 className="reserve">Lend</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Genre</th>
+            <th>Publication Date</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {books.map((book) => (
+            <tr key={book.id}>
+              <td>{book.id}</td>
+              <td>{book.title}</td>
+              <td>{book.author}</td>
+              <td>{book.isbn}</td>
+              <td>{book.genre}</td>
+              <td>{book.pub_date}</td>
+              <td>{book.status}</td>
+              <td>
+                <button onClick={() => handleLend(book.id)}>LEND</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+export default Lend;
