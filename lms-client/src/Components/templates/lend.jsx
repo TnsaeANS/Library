@@ -23,7 +23,7 @@ const Lend = () => {
       body: JSON.stringify({
         lend: {
           lent_date: new Date(),
-          return_date: new Date() + 7 * 24 * 60 * 60 * 1000,
+          return_date: new Date() + 5 * 24 * 60 * 60 * 1000,
           user_id: 1,
           book_id: book,
         },
@@ -54,7 +54,7 @@ const Lend = () => {
           </tr>
         </thead>
         <tbody>
-          {books.map((book) => (
+          {books && books.map((book) => (
             <tr key={book.id}>
               <td>{book.id}</td>
               <td>{book.title}</td>

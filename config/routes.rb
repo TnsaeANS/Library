@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post "/login", to: "users#login"
   get "/auto_login", to: "users#auto_login"
 
-
+  get '/overdue_books', to: 'books#overdue_books'
   get '/lendable_books', to: 'lends#lendable_books'
   get '/unreserved_books', to: 'reservations#unreserved_books'
   resources :statistics, only: :index

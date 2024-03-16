@@ -7,7 +7,7 @@ const Overdue = () => {
 
   useEffect(() => {
     async function loadOverdueBooks() {
-      const response = await fetch("http://127.0.0.1:3000/overdue" , {
+      const response = await fetch("http://127.0.0.1:3000/overdue_books" , {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("token")}`,
         }

@@ -21,6 +21,6 @@ Book.destroy_all
 )
 end
 
-1.times do User.create(username: "name", password: "yolo", email: "email", user_type: "admin")
-end
+# 1.times do User.create(username: "name", password: "yolo", email: "email", user_type: "admin")
+# end
 
