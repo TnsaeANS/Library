@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../templates/navbar';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import '../styles/reserve.css';
 
 const Reserve = () => {
@@ -9,9 +11,26 @@ const Reserve = () => {
     const [email, setEmail] = useState('');
     const [books, setBooks] = useState([])
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(title, bookName, author, email);
+    useEffect(() => {
+        fetch('http://127.0.0.1:3000/unreserved_books/')
+        .then(res => res.json())
+        .then(data => setBooks(data))
+    }, [])
+    const handleSubmit = (book) => {
+        fetch('http://localhost:3000/reservations', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                book_id: book.id,
+                user_id: 1,
+                reservation_date: new Date()
+            })
+        })
+            .then(res => res.json())
+            .catch(err => console.log(err));
     }
 
     return (
@@ -32,7 +51,7 @@ const Reserve = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {books.map((book) => (
+                    {books &&books.map((book) => (
                         <tr key={book.id}>
                             <td>{book.id}</td>
                             <td>{book.title}</td>
@@ -43,7 +62,8 @@ const Reserve = () => {
                             <td>{book.status}</td>
                             <button className="btn"><FontAwesomeIcon icon={faPenToSquare} style={{ color: "#71c72e" }} 
                             onClick={() => {
-                                handleEdit(book);
+                                handleSubmit(book);
+                                console.log("lolo");
                                 }}  /></button>
                         </tr>
                     ))}

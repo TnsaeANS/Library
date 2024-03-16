@@ -23,6 +23,7 @@ const SignUp = () => {
         email: email,
         user_type: userType,
         password: password,
+        password_confirmation: password,
       }, {
         headers: {
           'Content-Type': 'application/json',
@@ -102,7 +103,7 @@ const SignUp = () => {
               Already have an account? <Link to="/sign_in">Sign In</Link>
             </p>
           </form>
-          {error && <p>{error}</p>}
+          {/* {error && <p>{error}</p>} */}
         </div>
       </div>
     </div>

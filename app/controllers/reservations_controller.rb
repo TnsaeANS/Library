@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
     def index
-        @resrvations = Reservation.all
+        @reservations = Reservation.all
         render json: @reservations
     end
 
@@ -40,6 +40,6 @@ class ReservationsController < ApplicationController
 
     private
     def reservations_params
-        params(:reservations).require(:reservation_date, :book_id, :user_id)
+        params.permit(:reservation_date, :book_id, :user_id)
     end
 end
