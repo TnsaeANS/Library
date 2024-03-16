@@ -4,6 +4,7 @@ import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Bookform from "./book_form.jsx";
 import Navbar from "./navbar";
 import "../styles/Books.css";
+import { useLocation } from "react-router-dom";
 
 const Books = ({ hide }) => {
   const [books, setBooks] = useState([]);
@@ -11,6 +12,9 @@ const Books = ({ hide }) => {
   const [error, setError] = useState(null);
   const [visible, setVisible] = useState(false);
   const [editBook, setEditBook] = useState(null);
+
+  const location = useLocation();
+  const searchQuery = location.state?.searchQuery || "";
 
   useEffect(() => {
     async function loadBooks() {
@@ -77,7 +81,7 @@ const Books = ({ hide }) => {
           </tr>
         </thead>
         <tbody>
-          {books.map((book) => (
+          {books.filter((book) => book.title.includes(searchQuery.toLowerCase())).map((book) => (
             <tr key={book.id}>
               <td>{book.id}</td>
               <td>{book.title}</td>
