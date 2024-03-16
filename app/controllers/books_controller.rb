@@ -43,6 +43,7 @@ end
 
 
 def update
+  @book = Book.find_by(id: params[:id])
   if @book.update(book_params)
     render json: @book, status: :ok
   else

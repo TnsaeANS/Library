@@ -3,7 +3,7 @@ FactoryBot.define do
     username { "MyString" }
     password { "MyString" }
     password_confirmation { "MyString" }
-    email { "MyString" }
+    email { "user@bitscollege.edu.et" }
     user_type { "MyString" }
   end
 end
