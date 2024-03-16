@@ -18,7 +18,10 @@ const Navbar = () => {
       handleSearch();
     }
   };
-
+  const logout = () => {
+    localStorage.removeItem('token');
+    navigate("/sign_in");
+  };
   useEffect(() => {
     if (searchEffect) {
       navigate("/Books", { state: { searchQuery } });
@@ -40,7 +43,9 @@ const Navbar = () => {
         />
         <button onClick={handleSearch}>Search</button>
       </div>
+
       <div className="user-icon">
+      <button onClick={logout}>Logout</button>
         <img src={userIcon} alt="User Icon" />
       </div>
     </div>
