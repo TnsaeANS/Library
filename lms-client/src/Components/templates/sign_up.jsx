@@ -40,9 +40,9 @@ const SignUp = () => {
 
     } catch (error) {
       console.error(error.response.data);
-      setError(error.response.data);
+      setError(JSON.stringify(error.response.data.error[0]));
     }
-  };
+ };
 
   return (
     <div className="container">
@@ -103,7 +103,7 @@ const SignUp = () => {
               Already have an account? <Link to="/sign_in">Sign In</Link>
             </p>
           </form>
-          {/* {error && <p>{error}</p>} */}
+          {error && <div className="error-message"><p>{error}</p></div>}
         </div>
       </div>
     </div>

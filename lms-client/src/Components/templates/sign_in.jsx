@@ -37,7 +37,9 @@ const SignIn = () => {
       console.log(`User` + user)
 
       localStorage.setItem('token', token);
-      localStorage.setItem('user', user); 
+      localStorage.setItem('user', JSON.stringify(user)); 
+      localStorage.setItem('user_type', user.user_type); 
+      
 
       setLoggedIn(true);
 
@@ -86,13 +88,15 @@ const SignIn = () => {
                   Sign In
                 </button>
               </div>
-              {loginerror && <p>{loginerror.message}</p>}
               <p className="para-1">
                 Don't have an account? <Link to="/sign_up">Sign Up</Link>
-              </p>
+              </p>              
+              {loginerror && <div className="error-message"><p>{loginerror.message}</p></div>}
+
             </form>
           ) : (
             <p>You are now signed in.</p>
+
           )}
         </div>
       </div>
