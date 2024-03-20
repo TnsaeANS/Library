@@ -33,13 +33,13 @@ function Bookform({ editBook }) {
     
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const url = "http://localhost:3000/books";
+        const url = editBook ? `http://localhost:3000/books/${editBook.id}` : "http://localhost:3000/books";
         const payload = JSON.stringify({ book: newBook });
         // console.log(data)
 
         try {
             const response = await fetch(url, {
-                method: "POST",
+                method: editBook ? "PATCH" : "POST",
                 headers: { "Content-Type": "application/json" },
                 body: payload,
             });
