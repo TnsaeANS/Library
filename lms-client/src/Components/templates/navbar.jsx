@@ -32,7 +32,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="logo">
-        <img src={logo} alt="logo" />
+        <a href="/backed"><img  src={logo} alt="logo" /></a>
       </div>
       <div className="search-bar">
         <input

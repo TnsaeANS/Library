@@ -15,6 +15,8 @@ import Request from './Components/templates/request.jsx';
 import Requested from './Components/templates/requested.jsx';
 import BookStatistics from './Components/templates/book_statistics';
 import Reserved from './Components/templates/reserved';
+import Borrowed from './Components/templates/borrowed';
+
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [userType, setUserType] = useState(null);
@@ -45,6 +47,7 @@ function App() {
             <Route path="/overdue" element={<Overdue />} />
             <Route path="/recently" element={<Recently />} />
             <Route path="/requested" element={<Requested />} />
+            <Route path="/borrowed" element={<Borrowed />} />
             <Route path="/book_statistics" element={<BookStatistics />} />
             <Route path="/reserved" element={<Reserved />} />
             <Route path="/*" element={<Home />} />
