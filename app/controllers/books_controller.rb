@@ -58,11 +58,11 @@ def book_params
 end
 private
 
-  def notify_overdue_books(overdue_books)
+def notify_overdue_books(overdue_books)
     overdue_books.each do |book|
       NotificationMailer.overdue_notification(book.lends.last.user, book).deliver_now
     end
-  end
+end
 
 
 def set_book
