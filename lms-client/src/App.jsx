@@ -17,40 +17,52 @@ import BookStatistics from './Components/templates/book_statistics';
 import Reserved from './Components/templates/reserved';
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
-
+  const [userType, setUserType] = useState(null);
   useEffect(() => {
     setToken(localStorage.getItem('token'));
+    setUserType(localStorage.getItem('user_type'));
   }, []);
 
   return (
     <Router>
-      {
-        token === null ?
-          <Routes>
-            <Route path="/" element={<Welcome />} />
-            <Route path="/sign_up" element={<SignUp />} />
-            <Route path="/sign_in" element={<SignIn />} />
-            <Route path="/*" element={<SignIn />} />
-          </Routes>
-          :
-          <Routes>
+    {token === null ? (
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="/sign_up" element={<SignUp />} />
+        <Route path="/sign_in" element={<SignIn />} />
+        <Route path="/*" element={<SignIn />} />
+      </Routes>
+    ) : (
+      <Routes>
+        {userType === 'admin' && (
+          <>
             <Route path="/" element={<Welcome />} />
             <Route path="/sign_up" element={<SignUp />} />
             <Route path="/sign_in" element={<SignIn />} />
             <Route path="/home_admin" element={<Home />} />
-            <Route path="/user" element={<User />} />
             <Route path="/lend" element={<Lend />} />
             <Route path="/Books" element={<Books />} />
             <Route path="/overdue" element={<Overdue />} />
             <Route path="/recently" element={<Recently />} />
+            <Route path="/requested" element={<Requested />} />
+            <Route path="/book_statistics" element={<BookStatistics />} />
+            <Route path="/reserved" element={<Reserved />} />
+            <Route path="/*" element={<Home />} />
+          </>
+        )}
+        {userType === 'student' && (
+          <>
+            <Route path="/user" element={<User />} />
             <Route path="/reserve" element={<Reserve />} />
             <Route path="/request" element={<Request />} />
-            <Route path='/requested' element={<Requested />} />
-            <Route path='/book_statistics' element={<BookStatistics />} />
-            <Route path='/reserved' element={<Reserved />} />
-          </Routes>
-      }
-    </Router>
+            <Route path="/recently" element={<Recently />} />
+            <Route path="/Books" element={<Books />} />
+            <Route path="/*" element={<User />} />
+          </>
+        )}
+      </Routes>
+    )}
+  </Router>
   );
 }
 
